@@ -57,7 +57,7 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.div 
@@ -66,16 +66,16 @@ const Header = () => {
           >
             <Link 
               href="#home" 
-              className="text-2xl font-bold text-white flex items-center"
+              className="flex items-center text-2xl font-bold text-white"
               onClick={() => setActiveSection("home")}
             >
-              <span className="bg-blue-600 text-white p-2 rounded-lg mr-2">P</span>
+              <span className="px-2 mr-2 text-white bg-blue-600 rounded-lg">P</span>
               <span className="hidden sm:inline">YourName</span>
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="items-center hidden space-x-8 md:flex">
             <ul className="flex space-x-8">
               {navLinks.map((link) => (
                 <motion.li 
@@ -116,7 +116,7 @@ const Header = () => {
             >
               <Link
                 href="#contact"
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-md"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition-colors bg-blue-600 rounded-md shadow-md hover:bg-blue-700"
                 onClick={() => setActiveSection("contact")}
               >
                 <Phone className="w-4 h-4" />
@@ -126,17 +126,17 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="flex items-center md:hidden">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
+              className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white focus:outline-none"
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                <X className="h-6 w-6" />
+                <X className="w-6 h-6" />
               ) : (
-                <Menu className="h-6 w-6" />
+                <Menu className="w-6 h-6" />
               )}
             </motion.button>
           </div>
@@ -151,7 +151,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-gray-800 overflow-hidden"
+            className="overflow-hidden bg-gray-800 md:hidden"
           >
             <div className="px-2 pt-2 pb-4 space-y-1">
               {navLinks.map((link) => (
@@ -191,7 +191,7 @@ const Header = () => {
               >
                 <Link
                   href="#contact"
-                  className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-md font-medium transition-colors"
+                  className="flex items-center justify-center w-full gap-2 px-4 py-3 font-medium text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700"
                   onClick={() => {
                     setIsOpen(false);
                     setActiveSection("contact");

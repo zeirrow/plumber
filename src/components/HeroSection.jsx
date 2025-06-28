@@ -14,6 +14,8 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
+import HeroTitle from "./HeroTitle";
+import ScrollProgressBar from "./ScrollProgressBar";
 
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
@@ -119,8 +121,9 @@ const HeroSection = () => {
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-900 py-6 mt-16"
+      className="relative flex items-center justify-center min-h-screen py-6 mt-16 overflow-hidden bg-gray-900"
     >
+      <ScrollProgressBar />
       {/* Industrial background */}
       <div className="absolute inset-0 hero-bg-gradient bg-gradient-to-br from-gray-900 via-blue-900 to-blue-800" />
 
@@ -131,7 +134,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Wrench */}
         <svg
-          className="absolute plumbing-tool text-blue-400/80 top-1/4 left-1/5 w-14 h-14"
+          className="absolute plumbing-tool text-blue-400/80 top-1/4 left-5 md:left-[900px] w-14 h-14"
           viewBox="0 0 24 24"
         >
           <path
@@ -142,7 +145,7 @@ const HeroSection = () => {
 
         {/* Pipe */}
         <svg
-          className="absolute plumbing-tool text-blue-400/80 top-1/3 right-1/4 w-12 h-12"
+          className="absolute w-12 h-12 plumbing-tool text-blue-400/80 top-1/3 right-1/4"
           viewBox="0 0 24 24"
         >
           <path
@@ -155,7 +158,7 @@ const HeroSection = () => {
       {/* Animated pipe element */}
       <div
         ref={pipeRef}
-        className="absolute top-0 left-0 w-full h-1 bg-blue-400 transform origin-left"
+        className="absolute top-0 left-0 w-full h-1 origin-left transform bg-blue-400"
         style={{ boxShadow: "0 0 15px rgba(56, 182, 255, 0.7)" }}
       />
 
@@ -164,7 +167,7 @@ const HeroSection = () => {
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="absolute water-drop opacity-0 bg-blue-400 rounded-full"
+            className="absolute bg-blue-400 rounded-full opacity-0 water-drop"
             style={{
               width: "10px",
               height: "10px",
@@ -177,57 +180,50 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 text-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="container relative z-10 px-4 mx-auto text-white">
+        <span className="inline-block px-4 py-2 mb-4 text-sm font-medium text-blue-300 border rounded-full bg-blue-600/20 border-blue-400/30">
+          Trusted Since 1985
+        </span>
+        <HeroTitle setIsHovering={setIsHovering} />
+        <div className="grid items-center grid-cols-1 gap-12 mx-auto max-w-7xl lg:grid-cols-2">
           {/* Left column - Text content */}
           <div className="text-center lg:text-left">
             <div className="mb-8">
-              <span className="inline-block px-4 py-2 bg-blue-600/20 text-blue-300 rounded-full text-sm font-medium mb-4 border border-blue-400/30">
-                Trusted Since 1985
-              </span>
-              <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl leading-tight mb-6">
-                <span className="block">Plumbing</span>
-                <span
-                  className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                >
-                  Solutions
-                </span>
-                <span className="block">That Flow</span>
-              </h1>
-              <p className="text-xl text-blue-100 max-w-lg mx-auto lg:mx-0 mb-8">
+              <p className="max-w-lg mx-auto mb-8 text-xl text-blue-100 lg:mx-0">
                 We don't just fix leaks—we engineer water systems that stand the
                 test of time with precision and care.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center lg:justify-start">
+            <div className="flex flex-col justify-center gap-4 mb-12 sm:flex-row lg:justify-start">
               <button
                 className="relative overflow-hidden group flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-blue-500/30"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
               >
                 <span className="relative z-10">Emergency Call</span>
-                <ChevronRight className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <ChevronRight className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-r from-blue-600 to-cyan-600 group-hover:opacity-100" />
               </button>
 
-              <Link href="#services" className="relative overflow-hidden group border-2 border-blue-400/50 text-white hover:text-blue-900 font-bold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02]">
+              <Link
+                href="#services"
+                className="relative overflow-hidden group border-2 border-blue-400/50 text-white hover:text-blue-900 font-bold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02]"
+              >
                 <span className="relative z-10">Our Services</span>
-                <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                <span className="absolute inset-0 transition-opacity duration-500 bg-white opacity-0 group-hover:opacity-100 -z-10" />
               </Link>
             </div>
 
             {/* Features grid */}
-            <div className="grid grid-cols-2 gap-3 max-w-md mx-auto lg:mx-0">
+            <div className="grid max-w-md grid-cols-2 gap-3 mx-auto lg:mx-0">
               {features.map((feature, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 bg-white/5 backdrop-blur-sm p-3 rounded-lg border border-white/10 hover:bg-white/10 transition-colors"
+                  className="flex items-center gap-3 p-3 transition-colors border rounded-lg bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10"
                 >
                   <div className="text-blue-400">{feature.icon}</div>
-                  <span className="font-medium text-blue-100 text-sm">
+                  <span className="text-sm font-medium text-blue-100">
                     {feature.text}
                   </span>
                 </div>
@@ -238,7 +234,7 @@ const HeroSection = () => {
           {/* Right column - Visual element */}
           <div className="relative hidden lg:block">
             <div
-              className="relative w-full h-96 bg-blue-900/30 rounded-2xl overflow-hidden border border-blue-400/20"
+              className="relative w-full overflow-hidden border h-96 bg-blue-900/30 rounded-2xl border-blue-400/20"
               ref={ref}
             >
               {/* Interactive water pipe visualization */}
@@ -340,10 +336,10 @@ const HeroSection = () => {
               </svg>
 
               {/* Phone CTA */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center">
+              <div className="absolute text-center transform -translate-x-1/2 bottom-6 left-1/2">
                 <a
                   href="tel:555-PLUMBER"
-                  className="inline-flex items-center gap-3 bg-white text-blue-900 font-bold px-6 py-3 rounded-full shadow-lg hover:bg-blue-100 transition-colors"
+                  className="inline-flex items-center gap-3 px-6 py-3 font-bold text-blue-900 transition-colors bg-white rounded-full shadow-lg hover:bg-blue-100"
                 >
                   <Phone className="w-5 h-5" />
                   <span>(555) PLUMBER</span>
@@ -355,10 +351,10 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="animate-bounce flex flex-col items-center">
-          <span className="text-sm text-blue-300 mb-1">Scroll Down</span>
-          <div className="w-6 h-10 border-2 border-blue-400 rounded-full flex justify-center p-1">
+      <div className="absolute transform -translate-x-1/2 bottom-8 left-1/2">
+        <div className="flex flex-col items-center animate-bounce">
+          <span className="mb-1 text-sm text-blue-300">Scroll Down</span>
+          <div className="flex justify-center w-6 h-10 p-1 border-2 border-blue-400 rounded-full">
             <div className="w-1 h-2 bg-blue-400 rounded-full animate-scroll"></div>
           </div>
         </div>

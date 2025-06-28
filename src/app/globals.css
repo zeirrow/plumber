@@ -1,29 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --font-heading: 'Oxanium', cursive;         /* For futuristic headings */
-  --font-body: 'Work Sans', sans-serif;       /* For general readable body text */
-  --font-hero: 'Outfit', sans-serif;          /* For elegant hero section */
-  --font-mono: 'Courier New', monospace;      /* For code or console style */
-}
 
 * {
   scroll-behavior: smooth;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 
+
+/* For elegant headlines and titles */
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* For readable body text */
+body,
+p,
+li,
+a {
+  font-family: 'Lato', sans-serif;
+}
 
 body {
-  font-family: var(--font-body);
+  background-color: #101828;
 }
 
-h1{
-  font-family: var(--font-heading);
-  font-weight: 700;
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
+
+.shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  height: 100%;
+  width: 150%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 3s infinite;
 }

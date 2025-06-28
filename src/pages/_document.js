@@ -12,11 +12,12 @@ export default function Document() {
           crossOrigin="true"
         />
 
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
         {/* Google Fonts: Oxanium + Work Sans */}
-        <link
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
-        />
+        /> */}
       </Head>
       <body>
         <Main />
