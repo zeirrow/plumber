@@ -4,11 +4,13 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const ref = useOutsideClick(() => setIsOpen(false));
 
   const navLinks = [
     { href: "#home", label: "Home", section: "home" },
@@ -151,6 +153,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
+            ref={ref}
             className="overflow-hidden bg-gray-800 md:hidden"
           >
             <div className="px-2 pt-2 pb-4 space-y-1">
